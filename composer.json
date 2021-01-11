@@ -1,0 +1,30 @@
+{
+  "name": "vibbe/baslinker-api-bundle",
+  "description": "Baselinker API Bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rafał",
+      "email": "rafal@vibbe.pl"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://git.vibbe.pl/rafal/vibbe-baselinker-api-bundle"
+    }
+  ],
+  "require": {
+    "php" : ">=7.2",
+    "symfony/config": "^5.0",
+    "symfony/dependency-injection": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Vibbe\\BaselinkerAPI\\": ""
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0"
+  }
+}
