@@ -1,0 +1,48 @@
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: false       # Allows optimizing the container by removing unused services; this also means
+    # fetching services directly from the container via $container->get() won't work.
+    # The best practice is to be explicit about your dependencies anyway.
+
+  Vibbe\BaselinkerAPI\Factory\HttpClientFactory: ~
+  Vibbe\BaselinkerAPI\Manager\OrdersManager: ~
+  Vibbe\BaselinkerAPI\Facade\BaselinkerFacade: ~
+  Vibbe\BaselinkerAPI\Request\Orders: ~
+  Vibbe\BaselinkerAPI\Contracts\HttpClientAdapterInterface:
+    factory: ['@Vibbe\BaselinkerAPI\Factory\HttpClientFactory', 'createHttpClient']
+    arguments: ['@Vibbe\BaselinkerAPI\Contracts\ConfigServiceInterface']
+
+  vibbe.baselinker.config.adapter:
+    class: 'Vibbe\BaselinkerAPI\Adapters\DefaultConfigAdapter'
+    public: true
+
+  Vibbe\BaselinkerAPI\Contracts\ConfigServiceInterface:
+    class: Vibbe\BaselinkerAPI\Service\ConfigService
+    calls:
+      - [setAdapter, ['@=service(parameter("vibbe_baselinker_api_bundle.config_adapter"))']]
+
+  Vibbe\BaselinkerAPI\Contracts\BaselinkerServiceInterface:
+    class: Vibbe\BaselinkerAPI\Service\BaselinkerService
+
+  vibbe.baselinker.request:
+    class: 'Vibbe\BaselinkerAPI\Request\AbstractRequest'
+    arguments: ["Vibbe\\BaselinkerAPI\\Contracts\\HttpClientAdapterInterface"]
+
+
+  vibbe.baselinker.request.orders:
+    class: 'Vibbe\BaselinkerAPI\Request\Orders'
+
+  vibbe.baselinker.manager.orders:
+    class: 'Vibbe\BaselinkerAPI\Manager\OrdersManager'
+
+
+  vibbe.baselinker.facade:
+    class: 'Vibbe\BaselinkerAPI\Facade\BaselinkerFacade'
+    public: true
+
+  vibbe.baslinker.service:
+    class: '@Vibbe\BaselinkerAPI\Contracts\BaselinkerServiceInterface'
+    arguments: ["@vibbe.baselinker.facade"]
+

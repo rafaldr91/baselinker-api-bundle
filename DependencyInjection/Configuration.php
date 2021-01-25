@@ -15,10 +15,12 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder
             ->getRootNode()
+                ->children()
+                    ->scalarNode('token')->end()
+                    ->scalarNode('config_adapter')->defaultValue('vibbe.baselinker.config.adapter')->end()
+                ->end()
             ->end();
-
 
         return $treeBuilder;
     }
-
 }

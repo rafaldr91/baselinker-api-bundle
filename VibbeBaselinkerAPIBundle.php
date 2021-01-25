@@ -8,9 +8,10 @@
 namespace Vibbe\BaselinkerAPI;
 
 
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Vibbe\BaselinkerAPI\DependencyInjection\VibbeBaselinkerAPIBundleExtension;
 
-class VibbeBaselinkerAPIBundle
+class VibbeBaselinkerAPIBundle extends Bundle
 {
     public function getContainerExtension()
     {
