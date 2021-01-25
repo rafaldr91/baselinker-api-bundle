@@ -20,10 +20,10 @@ class VibbeBaselinkerAPIBundleExtension extends Extension
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration,$configs);
-
-//        $container->setParameter('vibbe_baselinker_api_bundle.transport_processor', $config['transport_processor'] ?? 'vibbe.baselinker_api.processor');
+        $container->setParameter('vibbe_baselinker_api_bundle.host', $config['host'] ?? 'vibbe.baselinker_api.host');
+        $container->setParameter('vibbe_baselinker_api_bundle.token', $config['token'] ?? 'vibbe.baselinker_api.token');
+        $container->setParameter('vibbe_baselinker_api_bundle.config_adapter', $config['config_adapter'] ?? 'vibbe.baselinker.config.adapter');
 
         $loader->load('services.yaml');
     }
-
 }

@@ -1,0 +1,3 @@
+vibbe_baselinker_api_bundle:
+    token: 'example-token'
+    config_adapter: 'vibbe.baselinker.config.adapter'
