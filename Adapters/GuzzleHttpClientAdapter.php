@@ -40,11 +40,10 @@ final class GuzzleHttpClientAdapter implements HttpClientAdapterInterface
                 'form_params' => [
                     'token' => $config->getToken(),
                     'method' => $method,
-                    'parameters' => \json_encode($parameters, \JSON_THROW_ON_ERROR, 512),
+                    'parameters' => \json_encode($parameters, 0, 512),
                 ],
             ]
         );
-
         return $response;
     }
 }

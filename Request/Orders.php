@@ -23,4 +23,14 @@ class Orders extends AbstractRequest implements OrdersInterface
             $this->adapter->post('getOrders', $data)
         );
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getOrderStatusList(): Response
+    {
+        return new Response(
+            $this->adapter->post('getOrderStatusList')
+        );
+    }
 }

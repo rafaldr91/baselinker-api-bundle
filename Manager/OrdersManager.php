@@ -28,4 +28,9 @@ class OrdersManager
     {
         return $this->ordersRequest->getOrders($data);
     }
+
+    public function getOrderStatusList(): Response
+    {
+        return $this->ordersRequest->getOrderStatusList();
+    }
 }
