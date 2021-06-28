@@ -24,4 +24,9 @@ class BaselinkerFacade
     {
         return $this->orders->getOrders($data);
     }
+
+    public function getOrderStatusList(): Response
+    {
+        return $this->orders->getOrderStatusList();
+    }
 }
